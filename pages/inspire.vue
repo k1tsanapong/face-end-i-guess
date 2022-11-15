@@ -7,10 +7,10 @@
       <thead>
         <tr>
           <th class="text-left">
-            Name
+            หัวข้อหลัก
           </th>
           <th class="text-left">
-            Calories
+            รายละเอียด
           </th>
         </tr>
       </thead>
