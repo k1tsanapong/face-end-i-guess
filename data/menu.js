@@ -6,37 +6,37 @@ const data = [
       to: "/",
     },
     {
-      icon: "mdi-chart-bubble",
+      icon: "mdi-dots-horizontal",
       title: "รายการโปรด",
       to: "/inspire",
     },
     {
-        icon: "mdi-moon-waxing-crescent",
+        icon: "mdi-home-outline",
         title: "หน้าหลัก",
         to: "/6431503002"
     },
     {
-        icon: "mdi-apple-icloud",
+        icon: "mdi-dots-horizontal",
         title: "ราการเพิ่มเติม",
         to: "/6431503026"
     },
     {
-        icon: "mdi-sun-compass",
+        icon: "mdi-tray-arrow-down",
         title: "ดาวน์โหลด",
         to: "/6431503042"
     },
     {
-        icon: "mdi-apple-icloud",
+        icon: "mdi-pin-outline",
         title: "ปักหมุด",
         to: "/6431503026"
     },
     {
-        icon: "mdi-apple-icloud",
+        icon: "mdi-alert-circle-outline",
         title: "เวอร์ชั่น",
         to: "/6431503026"
     },
     {
-        icon: "mdi-apple-icloud",
+        icon: "mdi-logout",
         title: "ออกจากระบบ",
         to: "/6431503026"
     },

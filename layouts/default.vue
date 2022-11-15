@@ -106,7 +106,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Email send system automatic medical checkup results'
     }
   }
 }
