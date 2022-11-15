@@ -2,38 +2,38 @@ const data = [
     {
       icon: "mdi-apps,",
       
-      title: "Logo",
+      title: "I.T.C.M",
       to: "/",
     },
     {
       icon: "mdi-dots-horizontal",
       title: "รายการโปรด",
-      to: "/inspire",
+      
     },
     {
         icon: "mdi-home-outline",
         title: "หน้าหลัก",
-        to: "/6431503002"
+        to: "/"
     },
     {
         icon: "mdi-dots-horizontal",
         title: "ราการเพิ่มเติม",
-        to: "/6431503026"
+        
     },
     {
         icon: "mdi-tray-arrow-down",
         title: "ดาวน์โหลด",
-        to: "/6431503042"
+        to: "/ดาวน์โหลด"
     },
     {
         icon: "mdi-pin-outline",
         title: "ปักหมุด",
-        to: "/6431503026"
+        to: "/ปักหมุด"
     },
     {
         icon: "mdi-alert-circle-outline",
         title: "เวอร์ชั่น",
-        to: "/6431503026"
+        to: "/เวอร์ชั่น"
     },
     {
         icon: "mdi-logout",
