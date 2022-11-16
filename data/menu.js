@@ -6,38 +6,38 @@ const data = [
     },
     {
       icon: "mdi-dots-horizontal",
-      title: "รายการโปรด",
+      title: "Favorites",
       
     },
     {
         icon: "mdi-home-outline",
-        title: "หน้าหลัก",
+        title: "HOME",
         to: "/"
     },
     {
         icon: "mdi-dots-horizontal",
-        title: "ราการเพิ่มเติม",
+        title: "Additional",
         
     },
     {
         icon: "mdi-tray-arrow-down",
-        title: "ดาวน์โหลด",
-        to: "/ดาวน์โหลด"
+        title: "DOWNLOAD",
+        to: "/download"
     },
     {
         icon: "mdi-pin-outline",
-        title: "ปักหมุด",
-        to: "/ปักหมุด"
+        title: "MARKER",
+        to: "/marker"
     },
     {
         icon: "mdi-alert-circle-outline",
-        title: "เวอร์ชั่น",
-        to: "/เวอร์ชั่น"
+        title: "VERSION",
+        to: "/version"
     },
     {
         icon: "mdi-logout",
-        title: "ออกจากระบบ",
-        to: "/6431503026"
+        title: "LOGOUT",
+        to: "/logout"
     },
   ]
   export default data;
