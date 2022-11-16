@@ -3,7 +3,6 @@ const data = [
       icon: "mdi-apps,",
       
       title: "I.T.C.M",
-      to: "/",
     },
     {
       icon: "mdi-dots-horizontal",
@@ -13,7 +12,7 @@ const data = [
     {
         icon: "mdi-home-outline",
         title: "หน้าหลัก",
-        to: "/"
+        to: "/home"
     },
     {
         icon: "mdi-dots-horizontal",
