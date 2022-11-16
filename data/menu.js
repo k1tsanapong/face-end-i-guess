@@ -12,7 +12,7 @@ const data = [
     {
         icon: "mdi-home-outline",
         title: "หน้าหลัก",
-        to: "/home"
+        to: "/"
     },
     {
         icon: "mdi-dots-horizontal",
