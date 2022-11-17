@@ -12,7 +12,7 @@
     <template v-slot:footer.page-text>
       <v-btn  color="#00ADB5" dark class="ma-2 white--text" @click="buttonCallback">
         Send email
-      </v-btn>
+      </v-btn> 
     </template>
   </v-data-table>
 </template>
