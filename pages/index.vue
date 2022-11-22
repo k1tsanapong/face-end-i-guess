@@ -108,7 +108,7 @@
     <h4 @click="ontest(item)">{{item.name}}</h4>
   </template>
   <template v-slot:footer.page-text>
-        <v-btn color="#00ADB5" dark class="ma-2 white--text" @click="buttonCallback">
+        <v-btn to="submit" color="#00ADB5" dark class="ma-2 white--text" @click="buttonCallback">
             Send email
         </v-btn>
     </template>
