@@ -66,7 +66,7 @@
 
     <template v-slot:footer.prepend>
       <v-btn
-        to=""
+        to="download"
         color="#00ADB5"
         dark
         class="ma-2 white--text"
