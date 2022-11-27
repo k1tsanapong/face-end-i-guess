@@ -1,6 +1,4 @@
 <template>
-
-  
   <v-data-table
     v-model="selected"
     :headers="headers"
@@ -10,7 +8,7 @@
     show-select
     class="elevation-1"
     :search="search"
-    >
+  >
     <template v-slot:top>
       <v-row>
         <v-col class="d-flex" cols="1" sm="5" md="5">
@@ -68,14 +66,14 @@
 
     <template v-slot:footer.prepend>
       <v-btn
-      to=""
-      color="#00ADB5"
-      dark
-      class="ma-2 white--text"
-      @click="buttonCallback"
-    >
-      DOWNLOAD
-    </v-btn>
+        to=""
+        color="#00ADB5"
+        dark
+        class="ma-2 white--text"
+        @click="buttonCallback"
+      >
+        DOWNLOAD
+      </v-btn>
     </template>
 
     <template v-slot:footer.page-text>
@@ -90,15 +88,13 @@
       </v-btn>
     </template>
   </v-data-table>
-
-  
 </template>
 
 <script>
 export default {
   data() {
     return {
-      search: '',
+      search: "",
 
       singleSelect: false,
       status: [
@@ -151,25 +147,16 @@ export default {
           name: "Verile Deeney",
           date: "22-01-2022",
         },
+
         {
-          hm: "643156",
-          name: "Drusy Huelin",
-          date: "24-07-2022",
-        },
-        {
-          hm: "643157",
+          hm: "643153",
           name: "Lynna Trasler",
           date: "04-01-2022",
         },
         {
-          hm: "643158",
+          hm: "643153",
           name: "Lynna Trasler",
           date: "15-11-2022",
-        },
-        {
-          hm: "643159",
-          name: "Clint Emery",
-          date: "20-09-2021",
         },
       ],
     };
