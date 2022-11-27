@@ -79,13 +79,13 @@
   
       <template v-slot:footer.page-text>
         <v-btn
-          to=""
+          to="/"
           color="#00ADB5"
           dark
           class="ma-2 white--text"
           @click="buttonCallback"
         >
-          Send email
+          BACK
         </v-btn>
       </template>
     </v-data-table>
