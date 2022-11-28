@@ -6,7 +6,7 @@
         </v-img>
       </center>
         <div class="text-center text-h5 font-weight-bold grey--text">
-          Email sent successfully !!
+          Email sent not successfully !!
         </div>
       </v-row>
       <v-row class="d-flex justify-end">
