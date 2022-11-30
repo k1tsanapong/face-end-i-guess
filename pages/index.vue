@@ -95,6 +95,7 @@ export default {
   data() {
     return {
       search: "",
+      
 
       singleSelect: false,
       status: [
