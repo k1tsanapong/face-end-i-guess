@@ -78,7 +78,7 @@
 
     <template v-slot:footer.page-text>
       <v-btn
-        to=""
+        to="success"
         color="#00ADB5"
         dark
         class="ma-2 white--text"

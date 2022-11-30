@@ -20,6 +20,26 @@ const data = [
         
     },
     {
+        icon: "mdi-developer-board",
+        title: "DASHBOARD",
+        to: "/dashboard"
+    },
+    {
+        icon: "mdi-account-group",
+        title: "MANAGE USERS",
+        to: "/manage_users"
+    },
+    {
+        icon: "mdi-calendar",
+        title: "B/W DATES REPORT",
+        to: "/dates_report"
+    },
+    {
+        icon: "mdi-pencil",
+        title: "CREATE ACCOUNT",
+        to: "/create_account"
+    },
+    {
         icon: "mdi-tray-arrow-down",
         title: "DOWNLOAD",
         to: "/download"
