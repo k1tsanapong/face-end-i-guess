@@ -1,14 +1,4 @@
 const conn = require('../db')
-
-conn.connect((err) => 
-{
-    if (err) throw err;
-      console.log(err);
-      
-    console.log("Mysql Connected...");
-    
-});
-
 const get_all_patient = async () => 
 {
     let results = [];

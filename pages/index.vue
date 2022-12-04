@@ -1,6 +1,7 @@
 <template>
   
   <div>
+
     <v-data-table
     v-model="selected"
     :headers="headers"
@@ -110,7 +111,7 @@ export default {
         "All emails",
       ],
 
-      selecte: [],
+      selected: [],
       headers: [
         {
           text: "Hospital Numbers",
@@ -179,6 +180,7 @@ export default {
 
     async get_all_patient() {
       const ip = await this.$axios.$get("/patient");
+      console.log('get_all_patient -',ip.status);
       this.all_patient = ip;
     },
   },
