@@ -5,7 +5,7 @@ const get_all_patient = async () =>
 
     try 
     {
-        let sql = 'SELECT * FROM `patient`'
+        let sql = 'SELECT *, CONCAT_WS(" ", `f_name`, `l_name`) AS `whole_name` FROM `patient`'
         let results = await conn.awaitQuery(sql);
 
         return JSON.stringify({ status: 200, error: null, response: results });

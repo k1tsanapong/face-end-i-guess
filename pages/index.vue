@@ -1,96 +1,85 @@
 <template>
-  
   <div>
-
     <v-data-table
-    v-model="selected"
-    :headers="headers"
-    :items="desserts"
-    :single-select="singleSelect"
-    item-key="name"
-    show-select
-    class="elevation-1"
-    :search="search"
-  >
-    <template v-slot:top>
-      <v-row>
-        <v-col class="d-flex" cols="1" sm="5" md="5">
-          <v-text-field
-            v-model="search"
-            label="Search"
-            prepend-icon="mdi-magnify"
-            class="mx-4"
-          ></v-text-field>
-        </v-col>
+      v-model="selected"
+      :headers="headers"
+      :items="all_patient.response"
+      :single-select="singleSelect"
+      :items-per-page="5"
+      item-key="hos_num"
+      show-select
+      class="elevation-1"
+      :search="search"
+    >
+      <template v-slot:top>
+        <v-row>
+          <v-col class="d-flex" cols="1" sm="5" md="5">
+            <v-text-field
+              v-model="search"
+              label="Search"
+              prepend-icon="mdi-magnify"
+              class="mx-4"
+            ></v-text-field>
+          </v-col>
 
-        <v-col class="d-flex" cols="12" sm="3" md="3">
-          <v-menu
-            ref="menu"
-            v-model="menu"
-            :close-on-content-click="false"
-            :return-value.sync="date"
-            transition="scale-transition"
-            offset-y
-            min-width="auto"
-          >
-            <template v-slot:activator="{ on, attrs }">
-              <v-text-field
-                v-model="date"
-                label="calendar"
-                prepend-icon="mdi-calendar"
-                readonly
-                v-bind="attrs"
-                v-on="on"
-              ></v-text-field>
-            </template>
-            <v-date-picker v-model="date" no-title scrollable>
-              <v-spacer></v-spacer>
-              <v-btn text color="primary" @click="menu = false"> Cancel </v-btn>
-              <v-btn text color="primary" @click="$refs.menu.save(date)">
-                OK
-              </v-btn>
-            </v-date-picker>
-          </v-menu>
-        </v-col>
+          <v-col class="d-flex" cols="12" sm="3" md="3">
+            <v-menu
+              ref="menu"
+              v-model="menu"
+              :close-on-content-click="false"
+              :return-value.sync="date"
+              transition="scale-transition"
+              offset-y
+              min-width="auto"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="date"
+                  label="calendar"
+                  prepend-icon="mdi-calendar"
+                  readonly
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker v-model="date" no-title scrollable>
+                <v-spacer></v-spacer>
+                <v-btn text color="primary" @click="menu = false">
+                  Cancel
+                </v-btn>
+                <v-btn text color="primary" @click="$refs.menu.save(date)">
+                  OK
+                </v-btn>
+              </v-date-picker>
+            </v-menu>
+          </v-col>
 
-        <v-col class="d-flex" cols="12" sm="3" md="3">
-          <v-select
-            :items="status"
-            label="status"
-            prepend-icon="mdi-format-list-bulleted"
-          ></v-select>
-        </v-col>
-      </v-row>
-    </template>
+          <v-col class="d-flex" cols="12" sm="3" md="3">
+            <v-select
+              :items="status"
+              label="status"
+              prepend-icon="mdi-format-list-bulleted"
+            ></v-select>
+          </v-col>
+        </v-row>
+      </template>
 
-    <template v-slot:item.name="{ item }">
-      <h4 @click="ontest(item)">{{ item.name }}</h4>
-    </template>
+      <!-- <template v-slot:item.name="{ item }">
+      <h4 @click="ontest(item)">{{ item.hos_num }}</h4>
+    </template> -->
 
-    <template v-slot:footer.prepend>
-      <v-btn
-        to="download"
-        color="#00ADB5"
-        dark
-        class="ma-2 white--text"
-        @click="buttonCallback"
-      >
-        DOWNLOAD
-      </v-btn>
-    </template>
+      <template v-slot:footer.prepend>
+        <v-btn to="download" color="#00ADB5" dark class="ma-2 white--text">
+          DOWNLOAD
+        </v-btn>
+      </template>
 
-    <template v-slot:footer.page-text>
-      <v-btn
-        to="success"
-        color="#00ADB5"
-        dark
-        class="ma-2 white--text"
-        @click="buttonCallback"
-      >
-        Send email
-      </v-btn>
-    </template>
-  </v-data-table>
+      <template v-slot:footer.page-text>
+        <v-btn to="success" color="#00ADB5" dark class="ma-2 white--text">
+          Send email
+        </v-btn>
+      </template>
+    </v-data-table>
   </div>
 </template>
 
@@ -117,60 +106,21 @@ export default {
           text: "Hospital Numbers",
           align: "start",
           sortable: false,
-          value: "hm",
+          value: "hos_num",
         },
         {
           text: "Name",
-          value: "name",
+          value: "whole_name",
         },
         {
           text: "Date",
-          value: "date",
-        },
-      ],
-      desserts: [
-        {
-          hm: "643151",
-          name: "Lori Durrad",
-          date: "12-01-2022",
-        },
-        {
-          hm: "643152",
-          name: "Clint Emery",
-          date: "20-09-2022",
-        },
-        {
-          hm: "643153",
-          name: "Lynna Trasler",
-          date: "09-07-2022",
-        },
-        {
-          hm: "643154",
-          name: "Carlina Hammerman",
-          date: "29-12-2021",
-        },
-        {
-          hm: "643155",
-          name: "Verile Deeney",
-          date: "22-01-2022",
-        },
-
-        {
-          hm: "643153",
-          name: "Lynna Trasler",
-          date: "04-01-2022",
-        },
-        {
-          hm: "643153",
-          name: "Lynna Trasler",
-          date: "15-11-2022",
+          value: "date_input",
         },
       ],
     };
   },
   created() {
-    this.get_all_patient()
-
+    this.get_all_patient();
   },
   methods: {
     ontest(item) {
@@ -180,7 +130,22 @@ export default {
 
     async get_all_patient() {
       const ip = await this.$axios.$get("/patient");
-      console.log('get_all_patient -',ip.status);
+      console.log("get_all_patient -", ip.status);
+
+      // let keys = Object.keys(ip.response);
+
+      // keys.map( (x) => {
+      //   obj[x] = newObj[x];
+      // });
+
+      Object.keys(ip.response).forEach(
+        (key) =>
+          (ip.response[key].date_input = ip.response[key].date_input.substr(
+            0,
+            10
+          ))
+      );
+
       this.all_patient = ip;
     },
   },
