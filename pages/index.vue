@@ -1,15 +1,14 @@
 <template>
   <div>
     <v-data-table
-      v-model="selected"
-      :headers="headers"
-      :items="all_patient.response"
-      :single-select="singleSelect"
-      :items-per-page="5"
-      item-key="hos_num"
-      show-select
-      class="elevation-1"
-      :search="search"
+    v-model="selected"
+    :headers="headers"
+    :items="all_patient.response"
+    :items-per-page="5"
+    item-key="hos_num"
+    show-select
+    class="elevation-1"
+    :search="search"
     >
       <template v-slot:top>
         <v-row>
@@ -34,15 +33,24 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
+                  clearable
                   v-model="date"
                   label="calendar"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
                   v-on="on"
-                ></v-text-field>
+                >
+                </v-text-field>
               </template>
-              <v-date-picker v-model="date" no-title scrollable>
+
+              <v-date-picker
+                @change="date_range_select"
+                v-model="date"
+                no-title
+                scrollable
+                range
+              >
                 <v-spacer></v-spacer>
                 <v-btn text color="primary" @click="menu = false">
                   Cancel
@@ -64,33 +72,35 @@
         </v-row>
       </template>
 
-      <!-- <template v-slot:item.name="{ item }">
-      <h4 @click="ontest(item)">{{ item.hos_num }}</h4>
-    </template> -->
-
-      <template v-slot:footer.prepend>
+      <template v-slot:[`footer.prepend`]>
         <v-btn to="download" color="#00ADB5" dark class="ma-2 white--text">
           DOWNLOAD
         </v-btn>
       </template>
 
-      <template v-slot:footer.page-text>
+      <template v-slot:[`footer.page-text`]>
         <v-btn to="success" color="#00ADB5" dark class="ma-2 white--text">
           Send email
         </v-btn>
+      </template>
+
+      <template v-slot:[`item.hos_num`]="{ item }">
+        <div @click="on_test(item)">{{ item.hos_num }}</div>
       </template>
     </v-data-table>
   </div>
 </template>
 
 <script>
-import axios from "@nuxtjs/axios";
-
 export default {
   data() {
     return {
       all_patient: [],
       search: "",
+      date: "",
+      date_start: "",
+      date_end: "",
+      menu: "",
 
       singleSelect: false,
       status: [
@@ -101,7 +111,12 @@ export default {
       ],
 
       selected: [],
-      headers: [
+    };
+  },
+
+  computed: {
+    headers() {
+      return [
         {
           text: "Hospital Numbers",
           align: "start",
@@ -115,28 +130,31 @@ export default {
         {
           text: "Date",
           value: "date_input",
+
+          filter: (value) => {
+            if (!this.date) return true;
+
+            let value_date = new Date(value);
+
+            console.log(value_date);
+
+            if (value_date >= this.date_start && value_date <= this.date_end) {
+              return value;
+            }
+          },
         },
-      ],
-    };
+      ];
+    },
   },
+
   created() {
     this.get_all_patient();
   },
-  methods: {
-    ontest(item) {
-      alert(item.name);
-      console.log(item);
-    },
 
+  methods: {
     async get_all_patient() {
       const ip = await this.$axios.$get("/patient");
       console.log("get_all_patient -", ip.status);
-
-      // let keys = Object.keys(ip.response);
-
-      // keys.map( (x) => {
-      //   obj[x] = newObj[x];
-      // });
 
       Object.keys(ip.response).forEach(
         (key) =>
@@ -147,6 +165,25 @@ export default {
       );
 
       this.all_patient = ip;
+    },
+
+    date_range_select(e) {
+      const e_date_first = new Date(e[0]);
+      const e_date_second = new Date(e[1]);
+
+      if (e_date_first.getTime() <= e_date_second.getTime()) {
+        this.date_start = new Date(e_date_first);
+        this.date_end = new Date(e_date_second);
+      } else {
+        this.date_start = new Date(e_date_second);
+        this.date_end = new Date(e_date_first);
+      }
+
+    },
+
+    on_test(item) {
+      alert(item.whole_name);
+      console.log(JSON.stringify(item));
     },
   },
 };
