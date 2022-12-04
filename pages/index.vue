@@ -1,5 +1,7 @@
 <template>
-  <v-data-table
+  
+  <div>
+    <v-data-table
     v-model="selected"
     :headers="headers"
     :items="desserts"
@@ -88,14 +90,17 @@
       </v-btn>
     </template>
   </v-data-table>
+  </div>
 </template>
 
 <script>
+import axios from "@nuxtjs/axios";
+
 export default {
   data() {
     return {
+      all_patient: [],
       search: "",
-      
 
       singleSelect: false,
       status: [
@@ -162,11 +167,19 @@ export default {
       ],
     };
   },
-  created() {},
+  created() {
+    this.get_all_patient()
+
+  },
   methods: {
     ontest(item) {
       alert(item.name);
       console.log(item);
+    },
+
+    async get_all_patient() {
+      const ip = await this.$axios.$get("/patient");
+      this.all_patient = ip;
     },
   },
 };
