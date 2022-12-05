@@ -85,8 +85,8 @@
         <v-btn
           @click="send_email"
           color="#00ADB5"
-          dark
           class="ma-2 white--text"
+          :disabled="selected == ''"
         >
           Send email
         </v-btn>
@@ -96,6 +96,43 @@
         <div @click="on_test(item)">{{ item.hos_num }}</div>
       </template> -->
     </v-data-table>
+
+    <template>
+      <div class="text-center">
+        <v-dialog v-model="dialog" fullscreen>
+          <v-card>
+            <v-card-title class="text-h5 grey lighten-2">
+              {{ row_selected.whole_name }}
+            </v-card-title>
+
+            <v-container>
+              <v-row>
+                <v-col cols="12">
+                  <v-img
+                    max-height="80vh"
+                    :src="`https://picsum.photos/id/${Math.floor(
+                      Math.random() * 100
+                    )}/1280/720`"
+                  ></v-img>
+                </v-col>
+              </v-row>
+            </v-container>
+
+            <v-divider></v-divider>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="orange" text @click="dialog = false"> Close </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </div>
+    </template>
+  </div>
+</template>
+
+
+
   </div>
 </template>
 
@@ -103,6 +140,10 @@
 export default {
   data() {
     return {
+      row_selected: {},
+
+      dialog: false,
+
       all_patient: [],
       search: "",
       date: "",
@@ -143,8 +184,6 @@ export default {
             if (!this.date) return true;
 
             let value_date = new Date(value);
-
-            console.log(value_date);
 
             if (value_date >= this.date_start && value_date <= this.date_end) {
               return value;
@@ -189,7 +228,7 @@ export default {
       formData.append("send_to_patient", send_to_patient);
 
       this.$axios.$post("/email/send-to-patient", formData).then((res) => {
-        // this.$router.push("/stock/"+this.product_input);
+        this.$router.push("/success");
         console.log(res);
         // this.$router.go(0);
       });
@@ -211,7 +250,9 @@ export default {
     },
 
     handleClick(item) {
+      this.row_selected = item;
       console.log(JSON.stringify(item));
+      this.dialog = true;
     },
   },
 

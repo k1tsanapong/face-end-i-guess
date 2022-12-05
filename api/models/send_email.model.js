@@ -3,6 +3,8 @@ const nodemailer = require("nodemailer");
 
 const send_email_to_patient = async (data) => {
   let results = [];
+
+  let store_url = [];
   console.log("now model");
 
   let split_string = data.send_to_patient.split(",");
@@ -12,21 +14,21 @@ const send_email_to_patient = async (data) => {
   try {
     let sql =
       'SELECT `hos_num`, `e_mail`, `date_input`, CONCAT_WS(" ", `f_name`, `l_name`) AS `whole_name` FROM `patient` WHERE hos_num IN (?)';
-    let get_detail = await conn.awaitQuery(sql, [split_string]);
+    get_detail = await conn.awaitQuery(sql, [split_string]);
+    console.log("get detail");
 
-    console.log("get email");
-    console.log(get_detail);
-
-    await get_detail.forEach(function (item, i) {
+    results = await get_detail.forEach(function (item, i) {
       console.log("sending...");
-      results.push(test_email(get_detail[i]));
+      store_url.push(test_email(get_detail[i]));
     });
+
+    return JSON.stringify({ status: 200, error: null, response: results });
   } catch (err) {
     console.log("email failed");
     console.log(err);
-  }
 
-  return JSON.stringify({ status: 200, error: null, response: results });
+    return JSON.stringify({ status: 500, error: err, response: results });
+  }
 };
 
 const test_email = async (to_who) => {

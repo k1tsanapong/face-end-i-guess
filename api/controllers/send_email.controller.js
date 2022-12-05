@@ -5,6 +5,8 @@ const send_email_to_patient = async (req, res) => {
   const send_email_to_patient = await send_email_model.send_email_to_patient(
     req.body
   );
+  
+  // res.redirect('/success')
   res.send(send_email_to_patient);
 };
 
