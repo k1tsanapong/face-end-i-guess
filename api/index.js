@@ -2,25 +2,19 @@ const express = require("express");
 const fileUpload = require("express-fileupload");
 
 const app = express();
+const cors = require("cors");
 
 app.use(fileUpload());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cors({ origin: true }));
+app.use(cors());
+
 const patient_router = require('./routers/patient.router');
+const send_email_router = require('./routers/send_email.router');
+
 
 app.use('/patient', patient_router);
-
-// const homePage = require("./routers/homePage");
-// const productsRouter = require("./routers/products.router");
-// const warehousesRouter = require("./routers/warehouses.router");
-// const itemsRouter = require('./routers/items.router');
-// const ordersRouter = require('./routers/orders.router');
-
-
-// app.use("/", homePage);
-// app.use("/items", itemsRouter);
-// app.use("/products", productsRouter);
-// app.use("/warehouses", warehousesRouter);
-// app.use("/orders", ordersRouter);
+app.use('/email', send_email_router);
 
 module.exports = app;
