@@ -10,11 +10,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: true }));
 app.use(cors());
 
-const patient_router = require('./routers/patient.router');
-const send_email_router = require('./routers/send_email.router');
+const patient_router = require("./routers/patient.router");
+const send_email_router = require("./routers/send_email.router");
 
-
-app.use('/patient', patient_router);
-app.use('/email', send_email_router);
+app.use("/patient", patient_router);
+app.use("/email", send_email_router);
 
 module.exports = app;

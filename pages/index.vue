@@ -1,7 +1,6 @@
 <template>
   <div>
-
-    {{selected}}
+    <!-- {{ selected }} -->
 
     <v-data-table
       v-model="selected"
@@ -10,7 +9,7 @@
       :items-per-page="5"
       item-key="hos_num"
       show-select
-      class="elevation-1 row-pointer "
+      class="elevation-1 row-pointer"
       :search="search"
       @click:row="handleClick"
     >
@@ -83,7 +82,12 @@
       </template>
 
       <template v-slot:[`footer.page-text`]>
-        <v-btn @click="send_email" color="#00ADB5" dark class="ma-2 white--text">
+        <v-btn
+          @click="send_email"
+          color="#00ADB5"
+          dark
+          class="ma-2 white--text"
+        >
           Send email
         </v-btn>
       </template>
@@ -91,7 +95,6 @@
       <!-- <template v-slot:[`item.hos_num`]="{ item }">
         <div @click="on_test(item)">{{ item.hos_num }}</div>
       </template> -->
-
     </v-data-table>
   </div>
 </template>
@@ -172,34 +175,24 @@ export default {
       this.all_patient = ip;
     },
 
-    send_email()
-    {
+    send_email() {
       let send_to_patient = [];
 
       const formData = new FormData();
 
-
-      Object.keys(this.selected).forEach(
-        (key) =>
-        (
-          send_to_patient.push(this.selected[key].e_mail)
-        )
-      )
+      Object.keys(this.selected).forEach((key) =>
+        send_to_patient.push(this.selected[key].hos_num)
+      );
 
       console.log(send_to_patient);
 
-      formData.append("email", send_to_patient);
+      formData.append("send_to_patient", send_to_patient);
 
-
-      this.$axios
-        .$post("/email/send-to-patient", formData)
-        .then((res) => {
-          // this.$router.push("/stock/"+this.product_input);
-          console.log(res);
-          // this.$router.go(0);
-
-        });
-
+      this.$axios.$post("/email/send-to-patient", formData).then((res) => {
+        // this.$router.push("/stock/"+this.product_input);
+        console.log(res);
+        // this.$router.go(0);
+      });
     },
 
     date_range_select(e) {
