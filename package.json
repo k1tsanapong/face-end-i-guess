@@ -25,5 +25,10 @@
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.12.3"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }
