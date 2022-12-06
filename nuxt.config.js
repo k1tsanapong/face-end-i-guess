@@ -6,7 +6,7 @@ export default {
   serverMiddleware: [{ path: '/api', handler: '~/api/index.js' }]
   ,
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  ssr: false,
+  ssr: true,
 
   server: {
     // port: 3003, // default: 3000
