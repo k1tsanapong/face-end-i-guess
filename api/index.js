@@ -16,4 +16,7 @@ const send_email_router = require("./routers/send_email.router");
 app.use("/patient", patient_router);
 app.use("/email", send_email_router);
 
-module.exports = app;
+module.exports = {
+    path: '/api',
+    handler: app
+  }
